@@ -1,4 +1,4 @@
-package Groupe7.sa.controler;
+package Groupe7.sa.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +12,15 @@ import java.util.List;
 
 public class Testcontroller {
 
-   @GetMapping(path = "String")
-
+    @GetMapping(path="String")
     public String getString() {
-        return "test";
+        return "Chaine de caractere transmise par SA";
     }
-
 
     @GetMapping()
 
     public List<String> getList() {
-        return List.of();
+        return List.of("Chaine de caractere" , "transmise par SA");
     }
 
 }
