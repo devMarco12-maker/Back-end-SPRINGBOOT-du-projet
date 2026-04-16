@@ -1,47 +1,41 @@
 package Groupe7.sa.controller;
-
 import Groupe7.sa.model.Client;
 import Groupe7.sa.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/clients")
-@CrossOrigin("*")
-public class ClientController {
+@RequestMapping("/clients")
 
+public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    // Enregistrer un client
-    @PostMapping("/register")
-    public Client register(@RequestBody Client client) {
-        return clientService.saveClient(client);
-    }
-
-    // Liste de tous les clients
     @GetMapping
-    public List<Client> getAllClients() {
+    public List<Client> getAll() {
         return clientService.getAllClients();
     }
 
-    // Obtenir un client par ID
     @GetMapping("/{id}")
-    public Client getClientById(@PathVariable Long id) {
+    public Optional<Client> getById(@PathVariable int id) {
         return clientService.getClientById(id);
     }
 
-    // Mettre à jour un client
+    @PostMapping
+    public Client create(@RequestBody Client client) {
+        return clientService.createClient(client);
+    }
+
     @PutMapping("/{id}")
-    public Client updateClient(@PathVariable Long id, @RequestBody Client client) {
+    public Client update(@PathVariable int id, @RequestBody Client client) {
         return clientService.updateClient(id, client);
     }
 
-    // Supprimer un client
     @DeleteMapping("/{id}")
-    public void deleteClient(@PathVariable Long id) {
+    public void delete(@PathVariable int id) {
         clientService.deleteClient(id);
     }
 }
